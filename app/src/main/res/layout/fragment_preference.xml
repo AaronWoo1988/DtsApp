@@ -1,57 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--======================================================================*
- DTS, Inc.
- 5220 Las Virgenes Road
- Calabasas, CA 91302  USA
-
- CONFIDENTIAL: CONTAINS CONFIDENTIAL PROPRIETARY INFORMATION OWNED BY
- DTS, INC. AND/OR ITS AFFILIATES ("DTS"), INCLUDING BUT NOT LIMITED TO
- TRADE SECRETS, KNOW-HOW, TECHNICAL AND BUSINESS INFORMATION. USE,
- DISCLOSURE OR DISTRIBUTION OF THE SOFTWARE IN ANY FORM IS LIMITED TO
- SPECIFICALLY AUTHORIZED LICENSEES OF DTS.  ANY UNAUTHORIZED
- DISCLOSURE IS A VIOLATION OF STATE, FEDERAL, AND INTERNATIONAL LAWS.
- BOTH CIVIL AND CRIMINAL PENALTIES APPLY.
-
- DO NOT DUPLICATE. COPYRIGHT 2016, DTS, INC. ALL RIGHTS RESERVED.
- UNAUTHORIZED DUPLICATION IS A VIOLATION OF STATE, FEDERAL AND
- INTERNATIONAL LAWS.
-
- ALGORITHMS, DATA STRUCTURES AND METHODS CONTAINED IN THIS SOFTWARE
- MAY BE PROTECTED BY ONE OR MORE PATENTS OR PATENT APPLICATIONS.
- UNLESS OTHERWISE PROVIDED UNDER THE TERMS OF A FULLY-EXECUTED WRITTEN
- AGREEMENT BY AND BETWEEN THE RECIPIENT HEREOF AND DTS, THE FOLLOWING
- TERMS SHALL APPLY TO ANY USE OF THE SOFTWARE (THE "PRODUCT") AND, AS
- APPLICABLE, ANY RELATED DOCUMENTATION:  (i) ANY USE OF THE PRODUCT
- AND ANY RELATED DOCUMENTATION IS AT THE RECIPIENT'S SOLE RISK:
- (ii) THE PRODUCT AND ANY RELATED DOCUMENTATION ARE PROVIDED "AS IS"
- AND WITHOUT WARRANTY OF ANY KIND AND DTS EXPRESSLY DISCLAIMS ALL
- WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY
- IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- PURPOSE, REGARDLESS OF WHETHER DTS KNOWS OR HAS REASON TO KNOW OF THE
- USER'S PARTICULAR NEEDS; (iii) DTS DOES NOT WARRANT THAT THE PRODUCT
- OR ANY RELATED DOCUMENTATION WILL MEET USER'S REQUIREMENTS, OR THAT
- DEFECTS IN THE PRODUCT OR ANY RELATED DOCUMENTATION WILL BE
- CORRECTED; (iv) DTS DOES NOT WARRANT THAT THE OPERATION OF ANY
- HARDWARE OR SOFTWARE ASSOCIATED WITH THIS DOCUMENT WILL BE
- UNINTERRUPTED OR ERROR-FREE; AND (v) UNDER NO CIRCUMSTANCES,
- INCLUDING NEGLIGENCE, SHALL DTS OR THE DIRECTORS, OFFICERS, EMPLOYEES,
- OR AGENTS OF DTS, BE LIABLE TO USER FOR ANY INCIDENTAL, INDIRECT,
- SPECIAL, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
- DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, AND LOSS
- OF BUSINESS INFORMATION) ARISING OUT OF THE USE, MISUSE, OR INABILITY
- TO USE THE PRODUCT OR ANY RELATED DOCUMENTATION.
-*======================================================================-->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dtsGray4"
+    android:background="@color/dtsWhite"
     android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_effect_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="环绕声"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_effect"
+            android:layout_below="@id/tv_effect_title"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_effect_wide"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/preference_wide_title"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_effect_infront"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/preference_infront_title"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_effect_traditional"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/img_main_auto_mode"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    android:id="@+id/txt_main_auto_mode"
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/preference_traditional_title"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_effect_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/ll_effect"
+            android:textSize="20sp"
+            android:text="@string/preference_infront_subtitle"
+            />
+
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/rl_effect"
+        android:background="@color/black"
+
+        />
+
+    <RelativeLayout
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_boost_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="Boost"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_boost"
+            android:layout_below="@id/tv_boost_title"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_boost_bass"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/bass_boost"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_boost_vocal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/vocal_boost"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_boost_treble"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/treble_boost"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+
 
     <RelativeLayout
         android:id="@+id/preference_layout_wide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:paddingBottom="@dimen/list_margin"
@@ -99,6 +297,7 @@
     <RelativeLayout
         android:id="@+id/preference_layout_infront"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
@@ -148,6 +347,7 @@
         android:id="@+id/preference_layout_traditional"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:paddingBottom="@dimen/list_margin"

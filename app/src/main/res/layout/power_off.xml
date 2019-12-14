@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- Power Off -->
+    <View
+        android:id="@+id/vw_main_dts_audio_processing_off_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dtsCCBlack"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/rl_main_with_power_off"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/txt_main_suggest_dts_audio_processing"
+            style="@style/dts_font_medfnt_large"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/dts_audio_processing_off_message"
+            android:textColor="@color/black"
+            android:visibility="visible" />
+    </RelativeLayout>
+</RelativeLayout>

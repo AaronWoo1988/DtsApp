@@ -70,9 +70,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -99,13 +101,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import static com.dts.dtsaudioprocessing.R.id.tb_main_switch;
+
+public class MainActivity extends AppCompatActivity{
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int TRANSITION_DURATION_MILLIS = 500;
 
     // Tool bar:
-    private ImageView mImgMainDtsAudioProcessingPower;
+    private Switch mImgMainDtsAudioProcessingPower;
     private boolean mDtsAudioProcessingEnabled = true;
 
     // Power-off:
@@ -193,8 +197,27 @@ public class MainActivity extends AppCompatActivity {
         tbMain.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.ic_more_vert));
 
         rlMainDtsAudioProcessingEnabled = (RelativeLayout) tbMain.findViewById(R.id.rl_main_dts_audio_processing_enabled);
-        mImgMainDtsAudioProcessingPower = (ImageView) findViewById(R.id.img_main_dts_audio_processing_power);
+        mImgMainDtsAudioProcessingPower = (Switch) findViewById(tb_main_switch);
+        if (FeatureManager.hasDts()) {
+            mImgMainDtsAudioProcessingPower.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    mDtsAudioProcessingEnabled = isChecked;
 
+                    DtsResult result = DtsManager.getInstance().setDtsEnabled(MainActivity.this, mDtsAudioProcessingEnabled);
+                    if (!result.isResultOk()) {
+                        handleError("rlMainDtsAudioProcessingEnabled.onClick(): setDtsEnabled()", result);
+                        Toast.makeText(MainActivity.this, "Setting DTS Audio enabled has failed: " + result.getResultCode() + " | " + result.getResultMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(MainActivity.this, "Setting DTS Audio enabled has success: " + result.getResultCode() + " | " + result.getResultMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    refreshUiWithDtsAudioProcessingEnabled(mDtsAudioProcessingEnabled);
+
+                }
+            });
+        }
         // Power-off:
         mVwMainDtsAudioProcessingOffOverlay = findViewById(R.id.vw_main_dts_audio_processing_off_overlay);
         mImgMainDtsArrow = findViewById(R.id.img_main_dts_arrow);
@@ -598,6 +621,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
+            case R.id.rl_eq:
             case R.id.ll_main_graphic_eq:
 
                 if (mDtsAudioProcessingEnabled) {
@@ -610,6 +634,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
+            case R.id.rl_effect:
             case R.id.ll_main_stereo_sound:
 
                 if (mDtsAudioProcessingEnabled) {

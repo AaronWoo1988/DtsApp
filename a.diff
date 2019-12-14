@@ -1,0 +1,223 @@
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+index 7bfef59..37a7509 100644
+--- a/.idea/misc.xml
++++ b/.idea/misc.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+index 8f9f309..9c5a68a 100644
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -10,7 +10,6 @@
+     ***********
+     -->
+     <uses-sdk
+-        android:minSdkVersion="18"
+         android:targetSdkVersion="24" />
+ 
+     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+diff --git a/app/src/main/java/com/dts/dtsaudioprocessing/activities/MainActivity.java b/app/src/main/java/com/dts/dtsaudioprocessing/activities/MainActivity.java
+index 93a1043..bb86473 100644
+--- a/app/src/main/java/com/dts/dtsaudioprocessing/activities/MainActivity.java
++++ b/app/src/main/java/com/dts/dtsaudioprocessing/activities/MainActivity.java
+@@ -70,9 +70,11 @@ import android.view.View;
+ import android.view.ViewGroup;
+ import android.view.Window;
+ import android.view.WindowManager;
++import android.widget.CompoundButton;
+ import android.widget.ImageView;
+ import android.widget.LinearLayout;
+ import android.widget.RelativeLayout;
++import android.widget.Switch;
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+@@ -99,13 +101,15 @@ import java.util.Collections;
+ import java.util.Comparator;
+ import java.util.List;
+ 
+-public class MainActivity extends AppCompatActivity {
++import static com.dts.dtsaudioprocessing.R.id.tb_main_switch;
++
++public class MainActivity extends AppCompatActivity{
+     private static final String TAG = MainActivity.class.getSimpleName();
+ 
+     private static final int TRANSITION_DURATION_MILLIS = 500;
+ 
+     // Tool bar:
+-    private ImageView mImgMainDtsAudioProcessingPower;
++    private Switch mImgMainDtsAudioProcessingPower;
+     private boolean mDtsAudioProcessingEnabled = true;
+ 
+     // Power-off:
+@@ -193,8 +197,27 @@ public class MainActivity extends AppCompatActivity {
+         tbMain.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.ic_more_vert));
+ 
+         rlMainDtsAudioProcessingEnabled = (RelativeLayout) tbMain.findViewById(R.id.rl_main_dts_audio_processing_enabled);
+-        mImgMainDtsAudioProcessingPower = (ImageView) findViewById(R.id.img_main_dts_audio_processing_power);
++        mImgMainDtsAudioProcessingPower = (Switch) findViewById(tb_main_switch);
++        if (FeatureManager.hasDts()) {
++            mImgMainDtsAudioProcessingPower.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
++                @Override
++                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
++                    mDtsAudioProcessingEnabled = isChecked;
++
++                    DtsResult result = DtsManager.getInstance().setDtsEnabled(MainActivity.this, mDtsAudioProcessingEnabled);
++                    if (!result.isResultOk()) {
++                        handleError("rlMainDtsAudioProcessingEnabled.onClick(): setDtsEnabled()", result);
++                        Toast.makeText(MainActivity.this, "Setting DTS Audio enabled has failed: " + result.getResultCode() + " | " + result.getResultMessage(), Toast.LENGTH_SHORT).show();
++                    }else {
++                        Toast.makeText(MainActivity.this, "Setting DTS Audio enabled has success: " + result.getResultCode() + " | " + result.getResultMessage(), Toast.LENGTH_SHORT).show();
+ 
++                    }
++
++                    refreshUiWithDtsAudioProcessingEnabled(mDtsAudioProcessingEnabled);
++
++                }
++            });
++        }
+         // Power-off:
+         mVwMainDtsAudioProcessingOffOverlay = findViewById(R.id.vw_main_dts_audio_processing_off_overlay);
+         mImgMainDtsArrow = findViewById(R.id.img_main_dts_arrow);
+diff --git a/app/src/main/res/layout/activity_main2.xml b/app/src/main/res/layout/activity_main2.xml
+index b4752b6..352516d 100644
+--- a/app/src/main/res/layout/activity_main2.xml
++++ b/app/src/main/res/layout/activity_main2.xml
+@@ -26,41 +26,7 @@
+         </RelativeLayout>
+ 
+ 
+-        <android.support.v7.widget.Toolbar
+-            android:id="@+id/tb_main"
+-            android:layout_width="match_parent"
+-            android:layout_height="86dp"
+-            android:elevation="4dp"
+-            android:fitsSystemWindows="true"
+-            android:minHeight="86dp"
+-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+-
+-            <RelativeLayout
+-                android:id="@+id/rl_main_dts_audio_processing_enabled"
+-                android:layout_width="36dp"
+-                android:layout_height="match_parent"
+-                android:layout_gravity="left"
+-                android:clickable="true">
+-
+-                <ImageView
+-                    android:id="@+id/img_main_dts_audio_processing_power"
+-                    android:layout_width="36dp"
+-                    android:layout_height="36dp"
+-                    android:layout_centerHorizontal="true"
+-                    android:layout_centerVertical="true"
+-                    android:contentDescription="@null"
+-                    android:src="@drawable/dts_ic_power" />
+-
+-            </RelativeLayout>
+-
+-            <ImageView
+-                android:layout_width="101dp"
+-                android:layout_height="50dp"
+-                android:layout_gravity="center"
+-                android:contentDescription="@string/about_activity_name"
+-                android:src="@drawable/dts_logo" />
+-        </android.support.v7.widget.Toolbar>
++       <include layout="@layout/tb_main"/>
+ 
+     </FrameLayout>
+ 
+@@ -519,37 +485,5 @@
+         android:layout_height="match_parent"
+         android:background="@color/dtsCCBlack"
+         android:visibility="invisible" />
+-
+-    <RelativeLayout
+-        android:id="@+id/rl_main_with_power_off"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        android:paddingStart="20dp"
+-        android:paddingTop="20dp"
+-        android:paddingEnd="20dp"
+-        android:paddingBottom="20dp"
+-        android:visibility="gone">
+-
+-        <ImageView
+-            android:id="@+id/img_main_dts_arrow"
+-            android:layout_width="40dp"
+-            android:layout_height="60dp"
+-            android:layout_marginStart="50dp"
+-            android:layout_marginTop="23dp"
+-            android:contentDescription="@null"
+-            android:src="@drawable/dts_arrow"
+-            android:visibility="visible" />
+-
+-        <TextView
+-            android:id="@+id/txt_main_suggest_dts_audio_processing"
+-            style="@style/dts_font_medfnt_large"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_below="@+id/img_main_dts_arrow"
+-            android:layout_marginTop="10dp"
+-            android:layout_marginEnd="20dp"
+-            android:text="@string/dts_audio_processing_off_message"
+-            android:textColor="@color/dtsWhite"
+-            android:visibility="visible" />
+-    </RelativeLayout>
++<include layout="@layout/power_off" />
+ </RelativeLayout>
+\ No newline at end of file
+diff --git a/app/src/main/res/menu/menu_activity_main.xml b/app/src/main/res/menu/menu_activity_main.xml
+index cd9744e..60c4455 100644
+--- a/app/src/main/res/menu/menu_activity_main.xml
++++ b/app/src/main/res/menu/menu_activity_main.xml
+@@ -4,13 +4,16 @@
+     <item android:id="@+id/item_settings"
+           android:icon="@drawable/ic_notifications_black_24dp"
+           android:title="@string/settings_activity_name"
++        android:visible="false"
+           app:showAsAction="never"/>
+     <item android:id="@+id/item_about_dts_sound"
+           android:icon="@drawable/ic_info_black_24dp"
+           android:title="@string/about_activity_name"
+-          app:showAsAction="never"/>
++          app:showAsAction="never"
++        android:visible="false"/>
+     <item android:id="@+id/action_reset"
+         android:title="@string/reset_to_defaults"
+         android:icon="@drawable/ic_refresh"
+-        app:showAsAction="never" />
++        app:showAsAction="never"
++        android:visible="false"/>
+ </menu>
+diff --git a/build.gradle b/build.gradle
+index d3560dc..bfcb169 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -6,7 +6,7 @@ buildscript {
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.0.0'
++        classpath 'com.android.tools.build:gradle:3.5.3'
+ 
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+index 4444403..fd5c7b2 100644
+--- a/gradle/wrapper/gradle-wrapper.properties
++++ b/gradle/wrapper/gradle-wrapper.properties
+@@ -1,6 +1,6 @@
+-#Fri Sep 22 15:13:02 PDT 2017
++#Sat Dec 14 14:29:34 CST 2019
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.4.1-all.zip

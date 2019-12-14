@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.2'
+
+    defaultConfig {
+        applicationId "com.dts.dtsaudioprocessing"
+        minSdkVersion 23
+        targetSdkVersion 28
+    }
+
+    signingConfigs {
+        release {
+            // Signing keys for dts_keystore_customer_key
+            storeFile file('dts_keystore_customer_key')
+            storePassword "x551.dts.lite"
+            keyAlias "hpx"
+            keyPassword "x551.dts.lite"
+        }
+        debug {
+            // Signing keys for dts_keystore_customer_key
+            storeFile file('dts_keystore_customer_key')
+            storePassword "x551.dts.lite"
+            keyAlias "hpx"
+            keyPassword "x551.dts.lite"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Determines the .apk file name when using "gradle assembleDebug" and "gradle assembleRelease"
+            project.archivesBaseName = "dts-audio-processing";
+
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // Determines the .apk file name when using "gradle assembleDebug" and "gradle assembleRelease"
+            project.archivesBaseName = "dts-audio-processing";
+            testCoverageEnabled = true
+        }
+    }
+}
+
+dependencies {
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-v4:28.0.0-alpha1'
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
+    implementation 'com.android.support:design:28.0.0-alpha1'
+    implementation project(':dts-sdk')
+}

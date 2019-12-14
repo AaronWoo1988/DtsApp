@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--======================================================================*
+ DTS, Inc.
+ 5220 Las Virgenes Road
+ Calabasas, CA 91302  USA
+
+ CONFIDENTIAL: CONTAINS CONFIDENTIAL PROPRIETARY INFORMATION OWNED BY
+ DTS, INC. AND/OR ITS AFFILIATES ("DTS"), INCLUDING BUT NOT LIMITED TO
+ TRADE SECRETS, KNOW-HOW, TECHNICAL AND BUSINESS INFORMATION. USE,
+ DISCLOSURE OR DISTRIBUTION OF THE SOFTWARE IN ANY FORM IS LIMITED TO
+ SPECIFICALLY AUTHORIZED LICENSEES OF DTS.  ANY UNAUTHORIZED
+ DISCLOSURE IS A VIOLATION OF STATE, FEDERAL, AND INTERNATIONAL LAWS.
+ BOTH CIVIL AND CRIMINAL PENALTIES APPLY.
+
+ DO NOT DUPLICATE. COPYRIGHT 2015, DTS, INC. ALL RIGHTS RESERVED.
+ UNAUTHORIZED DUPLICATION IS A VIOLATION OF STATE, FEDERAL AND
+ INTERNATIONAL LAWS.
+
+ ALGORITHMS, DATA STRUCTURES AND METHODS CONTAINED IN THIS SOFTWARE
+ MAY BE PROTECTED BY ONE OR MORE PATENTS OR PATENT APPLICATIONS.
+ UNLESS OTHERWISE PROVIDED UNDER THE TERMS OF A FULLY-EXECUTED WRITTEN
+ AGREEMENT BY AND BETWEEN THE RECIPIENT HEREOF AND DTS, THE FOLLOWING
+ TERMS SHALL APPLY TO ANY USE OF THE SOFTWARE (THE "PRODUCT") AND, AS
+ APPLICABLE, ANY RELATED DOCUMENTATION:  (i) ANY USE OF THE PRODUCT
+ AND ANY RELATED DOCUMENTATION IS AT THE RECIPIENT'S SOLE RISK:
+ (ii) THE PRODUCT AND ANY RELATED DOCUMENTATION ARE PROVIDED "AS IS"
+ AND WITHOUT WARRANTY OF ANY KIND AND DTS EXPRESSLY DISCLAIMS ALL
+ WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE, REGARDLESS OF WHETHER DTS KNOWS OR HAS REASON TO KNOW OF THE
+ USER'S PARTICULAR NEEDS; (iii) DTS DOES NOT WARRANT THAT THE PRODUCT
+ OR ANY RELATED DOCUMENTATION WILL MEET USER'S REQUIREMENTS, OR THAT
+ DEFECTS IN THE PRODUCT OR ANY RELATED DOCUMENTATION WILL BE
+ CORRECTED; (iv) DTS DOES NOT WARRANT THAT THE OPERATION OF ANY
+ HARDWARE OR SOFTWARE ASSOCIATED WITH THIS DOCUMENT WILL BE
+ UNINTERRUPTED OR ERROR-FREE; AND (v) UNDER NO CIRCUMSTANCES,
+ INCLUDING NEGLIGENCE, SHALL DTS OR THE DIRECTORS, OFFICERS, EMPLOYEES,
+ OR AGENTS OF DTS, BE LIABLE TO USER FOR ANY INCIDENTAL, INDIRECT,
+ SPECIAL, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+ DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, AND LOSS
+ OF BUSINESS INFORMATION) ARISING OUT OF THE USE, MISUSE, OR INABILITY
+ TO USE THE PRODUCT OR ANY RELATED DOCUMENTATION.
+*======================================================================-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dts_bg_activity_about">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_about"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/sv_about_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tb_about"
+                android:fillViewport="true"
+                android:background="@color/transparent">
+
+        <LinearLayout
+            android:id="@+id/ll_about_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:weightSum="1"
+            android:paddingLeft="105dp"
+            android:paddingRight="105dp">
+
+            <ImageView
+                android:id="@+id/img_about_dts_logo"
+                android:contentDescription="@string/dts"
+                android:layout_width="255dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="90dp"
+                android:src="@drawable/dts_logo" />
+
+            <TextView
+                android:id="@+id/txt_about_dts_mission"
+                android:text="@string/dts_mission"
+                android:textColor="@color/dtsWhite"
+                android:gravity="center"
+                style="@style/dts_font_medfnt_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp" />
+
+            <TextView
+                android:id="@+id/txt_about_dts_vision"
+                android:text="@string/dts_vision"
+                android:textColor="@color/dtsWhite"
+                android:gravity="center"
+                style="@style/dts_font_medfnt_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
+
+            <ImageView
+                android:id="@+id/img_about_dts_audio_processing_unbound"
+                android:contentDescription="@string/dts_sound_unbound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:src="@drawable/dts_audio_processing_unbound" />
+
+            <TextView
+                android:id="@+id/txt_about_dts_to_learn_more"
+                android:text="@string/dts_to_learn_more"
+                android:textColor="@color/dtsWhite"
+                style="@style/dts_font_medfnt_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp" />
+
+            <Button
+                android:id="@+id/btn_about_dts_web_address"
+                android:text="@string/dts_web_address"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                style="@style/dts_font_medfnt_xlarge"
+                android:layout_width="631dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/dts_bg_button_selector_web_site" />
+
+            <LinearLayout
+                android:id="@+id/ll_about_social_media"
+                android:layout_width="631dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:id="@+id/ll_about_twitter"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/dts_bg_button_selector_social_media"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:id="@+id/img_about_twitter"
+                        android:contentDescription="@string/dts_twitter"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/dts_ic_twitter" />
+
+                    <TextView
+                        android:id="@+id/txt_about_twitter"
+                        android:text="@string/dts_twitter"
+                        style="@style/dts_font_medfnt_large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/transparent"
+                        android:gravity="start|center_vertical"
+                        android:textColor="@color/dtsWhite" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_about_facebook"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/dts_bg_button_selector_social_media"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:id="@+id/img_about_facebook"
+                        android:contentDescription="@string/dts_facebook"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/dts_ic_facebook"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/txt_about_facebook"
+                        android:text="@string/dts_facebook"
+                        android:textColor="@color/dtsWhite"
+                        style="@style/dts_font_medfnt_large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:background="@color/transparent"
+                        android:gravity="start|center_vertical" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_about_foot_notes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                android:gravity="bottom"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:id="@+id/txt_about_dts_sound"
+                    android:text="@string/main_activity_name"
+                    android:textColor="@color/dtsGray10"
+                    style="@style/dts_font_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agreement_license"
+                        android:id="@+id/txt_about_eula"
+                        android:textColor="@color/text_link_color"
+                        style="@style/dts_font_xsmall" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="|"
+                        android:id="@+id/txt_about_line1"
+                        android:textColor="@color/dtsWhite"
+                        style="@style/dts_font_xsmall"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/agreement_privacypolicy"
+                        android:id="@+id/txt_about_pp"
+                        android:textColor="@color/text_link_color"
+                        style="@style/dts_font_xsmall" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_about_dts_ui_version"
+                    android:text="@string/dts_ui_version"
+                    android:textColor="@color/dtsGray10"
+                    style="@style/dts_font_xsmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txt_about_dts_copyrights"
+                    android:text="@string/dts_copyrights"
+                    android:textColor="@color/dtsGray10"
+                    style="@style/dts_font_xsmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

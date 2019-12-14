@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?><!--======================================================================*
+ DTS, Inc.
+ 5220 Las Virgenes Road
+ Calabasas, CA 91302  USA
+
+ CONFIDENTIAL: CONTAINS CONFIDENTIAL PROPRIETARY INFORMATION OWNED BY
+ DTS, INC. AND/OR ITS AFFILIATES ("DTS"), INCLUDING BUT NOT LIMITED TO
+ TRADE SECRETS, KNOW-HOW, TECHNICAL AND BUSINESS INFORMATION. USE,
+ DISCLOSURE OR DISTRIBUTION OF THE SOFTWARE IN ANY FORM IS LIMITED TO
+ SPECIFICALLY AUTHORIZED LICENSEES OF DTS.  ANY UNAUTHORIZED
+ DISCLOSURE IS A VIOLATION OF STATE, FEDERAL, AND INTERNATIONAL LAWS.
+ BOTH CIVIL AND CRIMINAL PENALTIES APPLY.
+
+ DO NOT DUPLICATE. COPYRIGHT 2015, DTS, INC. ALL RIGHTS RESERVED.
+ UNAUTHORIZED DUPLICATION IS A VIOLATION OF STATE, FEDERAL AND
+ INTERNATIONAL LAWS.
+
+ ALGORITHMS, DATA STRUCTURES AND METHODS CONTAINED IN THIS SOFTWARE
+ MAY BE PROTECTED BY ONE OR MORE PATENTS OR PATENT APPLICATIONS.
+ UNLESS OTHERWISE PROVIDED UNDER THE TERMS OF A FULLY-EXECUTED WRITTEN
+ AGREEMENT BY AND BETWEEN THE RECIPIENT HEREOF AND DTS, THE FOLLOWING
+ TERMS SHALL APPLY TO ANY USE OF THE SOFTWARE (THE "PRODUCT") AND, AS
+ APPLICABLE, ANY RELATED DOCUMENTATION:  (i) ANY USE OF THE PRODUCT
+ AND ANY RELATED DOCUMENTATION IS AT THE RECIPIENT'S SOLE RISK:
+ (ii) THE PRODUCT AND ANY RELATED DOCUMENTATION ARE PROVIDED "AS IS"
+ AND WITHOUT WARRANTY OF ANY KIND AND DTS EXPRESSLY DISCLAIMS ALL
+ WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE, REGARDLESS OF WHETHER DTS KNOWS OR HAS REASON TO KNOW OF THE
+ USER'S PARTICULAR NEEDS; (iii) DTS DOES NOT WARRANT THAT THE PRODUCT
+ OR ANY RELATED DOCUMENTATION WILL MEET USER'S REQUIREMENTS, OR THAT
+ DEFECTS IN THE PRODUCT OR ANY RELATED DOCUMENTATION WILL BE
+ CORRECTED; (iv) DTS DOES NOT WARRANT THAT THE OPERATION OF ANY
+ HARDWARE OR SOFTWARE ASSOCIATED WITH THIS DOCUMENT WILL BE
+ UNINTERRUPTED OR ERROR-FREE; AND (v) UNDER NO CIRCUMSTANCES,
+ INCLUDING NEGLIGENCE, SHALL DTS OR THE DIRECTORS, OFFICERS, EMPLOYEES,
+ OR AGENTS OF DTS, BE LIABLE TO USER FOR ANY INCIDENTAL, INDIRECT,
+ SPECIAL, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+ DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, AND LOSS
+ OF BUSINESS INFORMATION) ARISING OUT OF THE USE, MISUSE, OR INABILITY
+ TO USE THE PRODUCT OR ANY RELATED DOCUMENTATION.
+*======================================================================-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main_top_level"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dts_bg_music"
+    tools:context=".activities.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_main"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="4dp"
+        android:fitsSystemWindows="true"
+        android:minHeight="150dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <RelativeLayout
+            android:id="@+id/rl_main_dts_audio_processing_enabled"
+            android:layout_width="66dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/img_main_dts_audio_processing_power"
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@null"
+                android:src="@drawable/dts_ic_power" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="182dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/about_activity_name"
+            android:src="@drawable/dts_logo" />
+    </android.support.v7.widget.Toolbar>
+
+    <!-- Power On -->
+
+    <RelativeLayout
+        android:id="@+id/rl_main_with_power_on"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_main"
+        android:gravity="center_horizontal"
+        android:paddingBottom="30dp"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
+        android:paddingTop="30dp">
+
+        <LinearLayout
+            android:id="@+id/ll_main_sound_modes"
+            android:layout_width="match_parent"
+            android:layout_height="245dp"
+            android:layout_above="@+id/rl_main_audio_settings"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_main_music_mode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="onContentModeRelativeLayoutClicked">
+
+                <ImageView
+                    android:id="@+id/img_main_music_mode"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_mode_music" />
+
+                <TextView
+                    android:id="@+id/txt_main_music_mode"
+                    style="@style/dts_font_medfnt_xlarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_main_music_mode"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/music" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_movies_mode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="onContentModeRelativeLayoutClicked"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_main_movies_mode"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_mode_movies" />
+
+                <TextView
+                    android:id="@+id/txt_main_movies_mode"
+                    style="@style/dts_font_medfnt_xlarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_main_movies_mode"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/movies" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_games_mode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="onContentModeRelativeLayoutClicked"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_main_games_mode"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_mode_games" />
+
+                <TextView
+                    android:id="@+id/txt_main_games_mode"
+                    style="@style/dts_font_medfnt_xlarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_main_games_mode"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/games" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_main_audio_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_main_advanced_audio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_main_bass_boost"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/dts_bg_button_selector_boost_geq"
+                android:clickable="true"
+                android:onClick="onAudioSettingsClicked"
+                android:padding="25dp">
+
+                <ImageView
+                    android:id="@+id/img_main_bass_boost"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_boost_bass" />
+
+                <TextView
+                    android:id="@+id/txt_main_bass_boost"
+                    style="@style/dts_font_medfnt_xlarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_main_bass_boost"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/bass_boost" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_vocal_boost"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/dts_bg_button_selector_boost_geq"
+                android:clickable="true"
+                android:onClick="onAudioSettingsClicked"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <ImageView
+                    android:id="@+id/img_main_vocal_boost"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_boost_vocal" />
+
+                <TextView
+                    android:id="@+id/txt_main_vocal_boost"
+                    style="@style/dts_font_medfnt_xlarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_main_vocal_boost"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/vocal_boost" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_treble_boost"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/dts_bg_button_selector_boost_geq"
+                android:clickable="true"
+                android:onClick="onAudioSettingsClicked"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <ImageView
+                    android:id="@+id/img_main_treble_boost"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_boost_treble" />
+
+                <TextView
+                    android:id="@+id/txt_main_treble_boost"
+                    style="@style/dts_font_medfnt_xlarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_main_treble_boost"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="@string/treble_boost" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_main_advanced_audio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_main_stereo_sound"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/dts_bg_fill33black_borderwhite"
+                android:orientation="horizontal"
+                android:padding="22dp"
+                android:clickable="true"
+                android:onClick="onAudioSettingsClicked">
+
+                <ImageView
+                    android:id="@+id/img_main_stereo_sound"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_stereo_pref_wide"
+                    android:tint="@color/dtsOrangeAlt2"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_main_stereo_sound"
+                        style="@style/dts_font_medfnt_xlarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_main_bass_boost"
+                        android:textColor="@color/dtsWhite"
+                        android:text="@string/preference_title" />
+
+                    <TextView
+                        android:id="@+id/txt_main_stereo_sound_sub"
+                        style="@style/dts_font_medfnt_large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_main_bass_boost"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/preference_wide_title"
+                        android:textColor="@color/dtsOrangeAlt2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_main_graphic_eq"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:background="@drawable/dts_bg_fill33black_borderwhite"
+                android:padding="20dp"
+                android:onClick="onAudioSettingsClicked">
+
+                <ImageView
+                    android:id="@+id/img_main_graphic_eq"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_geq" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_main_graphic_eq"
+                        style="@style/dts_font_medfnt_xlarge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_main_bass_boost"
+                        android:text="@string/graphic_equalizer_title"
+                        android:textColor="@color/dtsWhite"/>
+
+                    <TextView
+                        android:id="@+id/txt_main_graphic_eq_sub"
+                        style="@style/dts_font_medfnt_large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_main_bass_boost"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/headphones" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Power Off -->
+
+    <View
+        android:id="@+id/vw_main_dts_audio_processing_off_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dtsCCBlack"
+        android:visibility="invisible" />
+
+    <RelativeLayout
+        android:id="@+id/rl_main_with_power_off"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp">
+
+        <ImageView
+            android:id="@+id/img_main_dts_arrow"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@null"
+            android:src="@drawable/dts_arrow"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_main_suggest_dts_audio_processing"
+            style="@style/dts_font_medfnt_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_main_dts_arrow"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/dts_audio_processing_off_message"
+            android:textColor="@color/dtsWhite"
+            android:visibility="visible" />
+    </RelativeLayout>
+</RelativeLayout>

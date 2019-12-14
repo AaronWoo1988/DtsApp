@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="general_option_margin">72dp</dimen>
+    <!-- Dimens for list items -->
+    <dimen name="list_margin">16dp</dimen>
+    <dimen name="list_icon_size">24dp</dimen>
+
+    <!-- Equalizer -->
+    <dimen name="equalizer_margin_text_spacing">8dp</dimen>
+    <dimen name="equalizer_margin_axis">69dp</dimen>
+    <dimen name="equalizer_thumb_size">16dp</dimen>
+
+    <!-- About screen dimens -->
+    <dimen name="about_icon_margin">10dp</dimen>
+
+    <!-- 2.0 = xhdpi, 3.0 = xxhdpi, 4.0 = xxxhdpi -->
+    <dimen name="standard_margin">16dp</dimen>
+</resources>

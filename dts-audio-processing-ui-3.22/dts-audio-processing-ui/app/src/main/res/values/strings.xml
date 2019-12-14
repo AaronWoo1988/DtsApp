@@ -1,0 +1,98 @@
+<resources>
+    <!-- Application -->
+    <string name="app_name">DTS Audio Processing</string>
+
+    <!-- Activities -->
+    <string name="main_activity_name">DTS Audio Processing</string>
+    <string name="settings_activity_name">Settings</string>
+    <string name="about_activity_name">About DTS</string>
+    <string name="reset_to_defaults">Reset Defaults</string>
+    <string name="advanced_audio_activity_name">Advanced Audio</string>
+    <!-- Strings related to MainActivity -->
+
+    <string name="music">Music</string>
+    <string name="movies">Movies</string>
+    <string name="games">Games</string>
+
+    <string name="bass_boost">Bass Boost</string>
+    <string name="vocal_boost">Vocal Boost</string>
+    <string name="treble_boost">Treble Boost</string>
+
+    <string name="graphic_equalizer_title">Graphic Equalizer</string>
+    <string name="speakers">Speakers</string>
+    <string name="headphones">Headphones</string>
+    <string name="usb">USB</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="dts_audio_processing_off_message">Tap to turn on DTS Audio Processing\n\nEnhance your listening experience for music, movies and games!</string>
+
+    <!-- Strings related to GeqActivity -->
+
+    <string name="zero_0">0</string>
+    <string name="plus_10">+10</string>
+    <string name="minus_10">-10</string>
+    <string name="hz">Hz</string>
+    <string name="onehundred_100">100</string>
+    <string name="threehundred_300">300</string>
+    <string name="one_k">1K</string>
+    <string name="three_k">3K</string>
+    <string name="ten_k">10K</string>
+
+    <string name="zero_db">0 dB</string>
+
+    <!-- Strings related to SettingsActivity -->
+
+    <string name="usage_tracking_title">Experience improvement program</string>
+    <string name="usage_tracking_summary">Help improve this app. Allow anonymous app performance and usage data to be shared with DTS.</string>
+
+    <!-- Strings related to AboutActivity -->
+
+    <string name="dts">DTS</string>
+    <string name="dts_mission">We exist to make the world sound better.</string>
+    <string name="dts_vision">We imagine a world where every experience, on any device, sounds simply incredible. DTS® delivers the best surround experience at the cinema, in the car, in the home, over your TV and PC or anywhere you go with your mobile devices together with your favorite pair of headphones.</string>
+    <string name="dts_sound_unbound">SOUND UNBOUND</string>
+    <string name="dts_to_learn_more">Check out DTS online to learn more.</string>
+    <string name="dts_web_address">www.dts.com</string>
+    <string name="dts_ui_version">Version 1.0.1.2</string>
+    <string name="dts_copyrights">&#169; DTS,Inc.  All rights reserved.</string>
+    <string name="dts_twitter">Twitter</string>
+    <string name="dts_facebook">Facebook</string>
+
+    <!-- Strings related to WelcomeActivity -->
+
+    <string name="welcome_dts_title">DTS&lt;sup&gt;&#174;&lt;/sup&gt; Audio Processing</string>
+    <string name="agreement_content">We exist to make the world sound better.</string>
+    <string name="agreement_license">End User License Agreement</string>
+    <string name="agreement_privacypolicy">Privacy Policy</string>
+    <string name="agreement_check">I agree to the DTS End User License Agreement and Privacy Policy.</string>
+    <string name="agreement_button">Continue</string>
+    <string name="msg_dap_disabled">DTS Audio Processing is disabled. Please enable DTS Audio Processing to use this feature.</string>
+    <string name="reset_defaults_title">Reset Defaults?</string>
+    <string name="reset_default_message">This will reset all audio preferences to their original values.</string>
+    <string name="reset">Reset</string>
+    <string name="reset_complete_preferences">Reset complete</string>
+
+    <!-- Strings related to PreferenceFragment -->
+    <!--string name="preference_actionbar_title">Stereo preference</string> -->
+    <string name="preference_title">Stereo Sound</string>
+    <string name="preference_wide_title">Wide</string>
+    <string name="preference_wide_subtitle">Enhances the spaciousness of the original stereo recording</string>
+    <string name="preference_infront_title">In-front</string>
+    <string name="preference_infront_subtitle">Brings the sound out and to the front, like two speakers in front of your head</string>
+    <string name="preference_traditional_title">Traditional</string>
+    <string name="preference_traditional_subtitle">Brings the sound close to your head for a more traditional headphone experience</string>
+    <string name="preference_unknown_title">Unknown</string>
+
+    <!-- Strings related to EnhancementsFragment -->
+    <string name="enhancements_title">Enhancements</string>
+
+    <!-- Strings related to Advanced Audio activity -->
+    <string name="text_description">We imagine a world where every experience, on any device, sounds simply incredible. DTS® delivers the best surround experience at the cinema, in the car, in the home, over your TV and PC or anywhere you go.</string>
+
+
+    <!-- Generic Strings -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+</resources>

@@ -1,0 +1,121 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/enhancements_title"
+        style="@style/H3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dtsWhite"
+        android:paddingLeft="@dimen/standard_margin"
+        android:paddingTop="6dp"
+        android:text="@string/enhancements_title" />
+    <RelativeLayout
+        android:id="@+id/enhancements_layout_bassboost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingBottom="@dimen/list_margin"
+        android:paddingTop="@dimen/list_margin">
+
+        <ImageView
+            android:id="@+id/enhancements_bassboost_icon"
+            android:layout_width="@dimen/list_icon_size"
+            android:layout_height="@dimen/list_icon_size"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:src="@drawable/dts_ic_boost_bass" />
+
+        <TextView
+            android:id="@+id/enhancements_bassboost_title"
+            style="@style/text_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_light"
+            android:layout_marginLeft="@dimen/general_option_margin"
+            android:text="@string/bass_boost" />
+        <Switch
+            android:id="@+id/enhancements_bassboost_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/DtsRadioButton"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:checked="false"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/enhancements_layout_vocalboost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingBottom="@dimen/list_margin"
+        android:paddingTop="@dimen/list_margin">
+
+        <ImageView
+            android:id="@+id/enhancements_vocalboost_icon"
+            android:layout_width="@dimen/list_icon_size"
+            android:layout_height="@dimen/list_icon_size"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:src="@drawable/dts_ic_boost_vocal" />
+
+        <TextView
+            android:id="@+id/enhancements_vocalboost_title"
+            style="@style/text_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/general_option_margin"
+            android:textColor="@color/grey_light"
+            android:text="@string/vocal_boost" />
+        <Switch
+            android:id="@+id/enhancements_vocalboost_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/DtsRadioButton"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:checked="false"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/enhancements_layout_trebleboost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:paddingBottom="@dimen/list_margin"
+        android:paddingTop="@dimen/list_margin">
+
+        <ImageView
+            android:id="@+id/enhancements_trebleboost_icon"
+            android:layout_width="@dimen/list_icon_size"
+            android:layout_height="@dimen/list_icon_size"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/standard_margin"
+            android:src="@drawable/dts_ic_boost_treble" />
+
+        <TextView
+            android:id="@+id/enhancements_trebleboost_title"
+            style="@style/text_standard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_light"
+            android:layout_marginLeft="@dimen/general_option_margin"
+            android:text="@string/treble_boost" />
+        <Switch
+            android:id="@+id/enhancements_trebleboost_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/DtsRadioButton"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:checked="false"/>
+    </RelativeLayout>
+
+</LinearLayout>

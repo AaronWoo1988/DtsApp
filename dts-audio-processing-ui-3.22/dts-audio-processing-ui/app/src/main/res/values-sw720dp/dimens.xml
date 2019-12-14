@@ -1,0 +1,13 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="general_option_margin">144dp</dimen>
+
+    <!-- Dimens for list items -->
+    <dimen name="list_margin">32dp</dimen>
+    <dimen name="list_icon_size">48dp</dimen>
+
+    <!-- 2.0 = xhdpi, 3.0 = xxhdpi, 4.0 = xxxhdpi -->
+    <dimen name="standard_margin">32dp</dimen>
+
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/dtsOrange</color>
+    <color name="colorPrimaryDark">@color/dtsOrangeAlt2</color>
+    <color name="colorAccent">@color/dtsYellow</color>
+
+    <!-- Lite Colors -->
+    <color name="grey_deep_dark">#FF282828</color>
+    <color name="grey_light">#FFACACAC</color>
+    <color name="grey_med">#FF6E6E6E</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="dts_orange">#FFf36f21</color>
+    <!-- <color name="dts_transparent_black">#C0000000</color> 75% opacity -->
+    <!-- 80% opacity -->
+    <!-- <color name="dts_transparent_black">#DA000000</color> 85% opacity -->
+    <!-- 40% opacity -->
+    <!-- 70% opacity -->
+    <!-- 50% opacity -->
+
+    <!-- Background -->
+
+    <!-- Divider -->
+
+    <!-- Primary Button -->
+
+    <!-- Secondary Button -->
+
+    <!-- Radio Button -->
+
+    <!-- 70% opacity -->
+
+    <!-- revised theme colors -->
+    <color name="default_text_color">#343434</color>
+    <color name="text_link_color">#33b5e5</color>
+
+    <!-- DTS Sound App -->
+
+    <!-- Primary -->
+    <color name="dtsOrange">#F16521</color>
+    <color name="dtsYellow">#FDB813</color>
+
+    <!-- Secondary -->
+    <color name="dtsBlack">#000000</color>
+    <color name="dtsWhite">#FFFFFF</color>
+
+    <!-- Grays -->
+    <color name="dtsGray4">#333333</color>
+    <color name="dtsGray8">#5E5E5E</color>
+    <color name="dtsGray9">#7C7C7C</color>
+    <color name="dtsGray10">#989898</color>
+
+    <!-- Interactive -->
+    <color name="dtsOrangeAlt2">#D85B1E</color>
+    <color name="dtsOrangeAlt3">#6A402B</color>
+    <color name="dtsCCBlack">#CC000000</color>
+</resources>

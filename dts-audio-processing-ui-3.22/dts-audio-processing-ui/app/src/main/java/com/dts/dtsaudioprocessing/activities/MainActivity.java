@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         AsyncTask initTask = new DtsInitializeTask(this);
         initTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         // Status bar:
         setStatusBarColor();
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         mLlMainSoundModes = (LinearLayout) findViewById(R.id.ll_main_sound_modes);
 
         // --- Audio Modes:
-        mMainAudioSettings = (LinearLayout)findViewById(R.id.rl_main_audio_settings);
+        mMainAudioSettings = (LinearLayout) findViewById(R.id.rl_main_audio_settings);
 
         mImgMainMusicMode = (ImageView) findViewById(R.id.img_main_music_mode);
         mTxtMainMusicMode = (TextView) findViewById(R.id.txt_main_music_mode);
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
         mTxtMainVocalBoost = (TextView) findViewById(R.id.txt_main_vocal_boost);
         mTxtMainTrebleBoost = (TextView) findViewById(R.id.txt_main_treble_boost);
 
-        mImgMainStereoSound =(ImageView) findViewById(R.id.img_main_stereo_sound);
+        mImgMainStereoSound = (ImageView) findViewById(R.id.img_main_stereo_sound);
         mTxtMainStereoSound = (TextView) findViewById(R.id.txt_main_stereo_sound);
         mTxtMainStereoSoundSub = (TextView) findViewById(R.id.txt_main_stereo_sound_sub);
 
@@ -245,14 +245,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkFeatureAvailability() {
 
-        if(!FeatureManager.hasBassBoost()) {
+        if (!FeatureManager.hasBassBoost()) {
             mRlMainBassBoost.setVisibility(View.GONE);
         }
-        if(!FeatureManager.hasTrebleBoost()) {
+        if (!FeatureManager.hasTrebleBoost()) {
             mRlMainTrebleBoost.setVisibility(View.GONE);
         }
-        if(!FeatureManager.hasDialogEnhancement()) {
-            mRlMainVocalBoost .setVisibility(View.GONE);
+        if (!FeatureManager.hasDialogEnhancement()) {
+            mRlMainVocalBoost.setVisibility(View.GONE);
         }
 
         refreshGeqUI();
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
         // And register to listen to enable state changes. In case a third party app changes the state using the
         // broadcast API.
         sdkChangeFilter.addAction(DtsIntents.INTENT_STATUS_CHANGED_DTS_STATE);
-        DtsManager.getInstance().setBroadcastStateChangeEnabled(this,true); // Make sure we enable the broadcasting of enable state, by the SDK.
+        DtsManager.getInstance().setBroadcastStateChangeEnabled(this, true); // Make sure we enable the broadcasting of enable state, by the SDK.
         registerReceiver(this.mSDKBroadcastReceiver, sdkChangeFilter);
 
         refreshUiWithDtsAudioProcessingEnabled(mDtsAudioProcessingEnabled);
@@ -290,8 +290,7 @@ public class MainActivity extends AppCompatActivity {
                     refreshUiWithDtsAudioProcessingEnabled(mDtsAudioProcessingEnabled);
                 }
             });
-        }
-        else {
+        } else {
             rlMainDtsAudioProcessingEnabled.setVisibility(View.GONE);
         }
 
@@ -324,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
                 if (dtsResult.isResultOk()) {
 
                     ContentMode contentMode = (ContentMode) dtsResult.getData();
-                    if(contentMode != null){
+                    if (contentMode != null) {
                         mCurrentContentMode = contentMode;
                         setContentMode(mCurrentContentMode);
                     }
@@ -376,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_reset:
                 Log.d(TAG, "Resetting to OEM default!");
 
-                if (mDtsAudioProcessingEnabled){
+                if (mDtsAudioProcessingEnabled) {
                     showResetDialog();
                 } else {
                     String message = getResources().getString(R.string.msg_dap_disabled);
@@ -466,7 +465,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (ContentMode cm : mContentModeList) {
-            if (cm.getType()!= null) {
+            if (cm.getType() != null) {
                 if (cm.getType() == ContentModeType.ATTACHED_2 || cm.getType() == ContentModeType.ATTACHED_3 || cm.getType() == ContentModeType.ATTACHED_4) {
                     if (cm.getType() == ContentModeType.ATTACHED_2) {
                         mCurrentContentMode = cm;
@@ -485,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
         List<Integer> geqValues = new ArrayList<>(5);
 
         // Update last-set gain array
-        for (int index = 0; index<5; ++index)
+        for (int index = 0; index < 5; ++index)
             geqValues.add(0);
 
         // Use API to set all GEQ
@@ -503,7 +502,7 @@ public class MainActivity extends AppCompatActivity {
         resetAudioLevelSettings();
 
         //Forcefully set GEQ to be enabled before resetting GEQ to defaults
-        if((DtsFeatureChecker.getInstance().hasFeature(DtsFeature.GEQ) || DtsFeatureChecker.getInstance().hasFeature(DtsFeature.GEQ_5)) && !DtsManager.getInstance().getGEQEnabled().getData()) {
+        if ((DtsFeatureChecker.getInstance().hasFeature(DtsFeature.GEQ) || DtsFeatureChecker.getInstance().hasFeature(DtsFeature.GEQ_5)) && !DtsManager.getInstance().getGEQEnabled().getData()) {
             DtsResult geqEnableResult = DtsManager.getInstance().setGEQEnabled(true);
             if (!geqEnableResult.isResultOk()) {
                 Log.e(TAG, "Enabling GEQ failed with: " + geqEnableResult.getResultCode() + " | " + geqEnableResult.getResultMessage());
@@ -545,11 +544,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (newContentModeType != ContentModeType.UNKNOWN) {
             // Set new Content Mode:
-            if( mCurrentContentMode != null)
+            if (mCurrentContentMode != null)
                 animateContentModeChange(mCurrentContentMode.getType(), newContentModeType);
 
-            for (ContentMode cm: mContentModeList)
-            {
+            for (ContentMode cm : mContentModeList) {
                 if (cm.getType().equals(newContentModeType)) {
                     mCurrentContentMode = cm;
                     setContentMode(cm);
@@ -560,19 +558,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAdvancedAudioLayoutClicked(View view) {
-        if(mDtsAudioProcessingEnabled)
+        if (mDtsAudioProcessingEnabled)
             startActivity(new Intent(this, AdvancedAudioActivity.class));
-        else{
-            Log.d(TAG,"DTS Sound is disabled");
+        else {
+            Log.d(TAG, "DTS Sound is disabled");
         }
     }
 
-    public void onAudioSettingsClicked(View view){
+    public void onAudioSettingsClicked(View view) {
 
         int viewId = view.getId();
         switch (viewId) {
             case R.id.rl_main_bass_boost:
-                if(!FeatureManager.hasBassBoost()) {
+                if (!FeatureManager.hasBassBoost()) {
                     // disable
                     setEnabledAll(mRlMainBassBoost, false);
                     return;
@@ -582,7 +580,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.rl_main_vocal_boost:
-                if(!FeatureManager.hasDialogEnhancement()) {
+                if (!FeatureManager.hasDialogEnhancement()) {
                     // disable
                     setEnabledAll(mRlMainVocalBoost, false);
                     return;
@@ -591,7 +589,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.rl_main_treble_boost:
-                if(!FeatureManager.hasTrebleBoost()) {
+                if (!FeatureManager.hasTrebleBoost()) {
                     // disable
                     setEnabledAll(mRlMainTrebleBoost, false);
                     return;
@@ -602,24 +600,24 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.ll_main_graphic_eq:
 
-                if(mDtsAudioProcessingEnabled) {
+                if (mDtsAudioProcessingEnabled) {
                     Intent intent = new Intent(this, AdvancedAudioActivity.class);
                     intent.putExtra(AdvancedAudioActivity.ADVANCED_AUDIO_KEY, AdvancedAudioActivity.GEQ_FLAG);
                     startActivity(intent);
-                }else{
-                    Log.d(TAG,"DTS Sound is disabled");
+                } else {
+                    Log.d(TAG, "DTS Sound is disabled");
                 }
 
                 break;
 
             case R.id.ll_main_stereo_sound:
 
-                if(mDtsAudioProcessingEnabled) {
+                if (mDtsAudioProcessingEnabled) {
                     Intent intent = new Intent(this, AdvancedAudioActivity.class);
                     intent.putExtra(AdvancedAudioActivity.ADVANCED_AUDIO_KEY, AdvancedAudioActivity.STEREO_FLAG);
                     startActivity(intent);
-                }else{
-                    Log.d(TAG,"DTS Sound is disabled");
+                } else {
+                    Log.d(TAG, "DTS Sound is disabled");
                 }
 
                 break;
@@ -635,7 +633,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private boolean getBassBoostEnabled() {
         if (!FeatureManager.hasBassBoost()) {
-            Log.w(TAG,"Bass Boost feature is disabled");
+            Log.w(TAG, "Bass Boost feature is disabled");
             return false;
         }
         // [API-CALL] Call API to get Bass Boost enabled state
@@ -644,7 +642,7 @@ public class MainActivity extends AppCompatActivity {
             // getBassBoostEnabled() call returned error
             return false;
         }
-        Log.d(TAG,"Bass Boost enabled = "+resultBassBoostMode.getData());
+        Log.d(TAG, "Bass Boost enabled = " + resultBassBoostMode.getData());
         return resultBassBoostMode.getData();
     }
 
@@ -655,7 +653,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private boolean getTrebleBoostEnabled() {
         if (!FeatureManager.hasTrebleBoost()) {
-            Log.w(TAG,"Treble Boost feature is disabled");
+            Log.w(TAG, "Treble Boost feature is disabled");
             return false;
         }
         // [API-CALL] Call API to get Treble Boost enabled state
@@ -674,7 +672,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private boolean getDialogEnhancementEnabled() {
         if (!FeatureManager.hasDialogEnhancement()) {
-            Log.w(TAG,"Dialog enhancement feature is disabled");
+            Log.w(TAG, "Dialog enhancement feature is disabled");
             return false;
         }
         // [API-CALL] Call API to get Dialog Enhancement enabled state
@@ -768,7 +766,7 @@ public class MainActivity extends AppCompatActivity {
     private void refreshUiWithDtsAudioProcessingEnabled(boolean enabled) {
         mDtsAudioProcessingEnabled = enabled;
 
-        if(FeatureManager.hasDts()) {
+        if (FeatureManager.hasDts()) {
             // Set tint for power button
             setTint(mImgMainDtsAudioProcessingPower, enabled);
         }
@@ -782,15 +780,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Power off
         int powerOffVisibility = enabled ? View.INVISIBLE : View.VISIBLE;
-        if(mVwMainDtsAudioProcessingOffOverlay != null)
-          mVwMainDtsAudioProcessingOffOverlay.setVisibility(powerOffVisibility);
-        if(mImgMainDtsArrow != null)
-          mImgMainDtsArrow.setVisibility(powerOffVisibility);
-        if(mTxtMainDtsAudioProcessingOffMessage != null)
-          mTxtMainDtsAudioProcessingOffMessage.setVisibility(powerOffVisibility);
+        if (mVwMainDtsAudioProcessingOffOverlay != null)
+            mVwMainDtsAudioProcessingOffOverlay.setVisibility(powerOffVisibility);
+        if (mImgMainDtsArrow != null)
+            mImgMainDtsArrow.setVisibility(powerOffVisibility);
+        if (mTxtMainDtsAudioProcessingOffMessage != null)
+            mTxtMainDtsAudioProcessingOffMessage.setVisibility(powerOffVisibility);
 
         refreshGeqUI();
-   }
+    }
 
     private void refreshUiWithContentMode(ContentModeType soundMode, boolean changeBackground) {
         // Change background
@@ -849,22 +847,23 @@ public class MainActivity extends AppCompatActivity {
                 mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.games_to_games));
             }
         } else if (newContentMode == ContentModeType.ATTACHED_2) {
-                mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.music_to_music));
-            } else if (newContentMode == ContentModeType.ATTACHED_3) {
-                mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.movies_to_movies));
-            } else if (newContentMode == ContentModeType.ATTACHED_4) {
-                mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.games_to_games));
-            }
+            mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.music_to_music));
+        } else if (newContentMode == ContentModeType.ATTACHED_3) {
+            mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.movies_to_movies));
+        } else if (newContentMode == ContentModeType.ATTACHED_4) {
+            mRlMainTopLevel.setBackground(ContextCompat.getDrawable(this, R.drawable.games_to_games));
+        }
 
-            if (mRlMainTopLevel.getBackground() instanceof TransitionDrawable){
+        if (mRlMainTopLevel.getBackground() instanceof TransitionDrawable) {
 
-                // Perform background drawable transition:
-                TransitionDrawable transition = (TransitionDrawable) mRlMainTopLevel.getBackground();
-                transition.startTransition(TRANSITION_DURATION_MILLIS);
-            }
+            // Perform background drawable transition:
+            TransitionDrawable transition = (TransitionDrawable) mRlMainTopLevel.getBackground();
+            transition.startTransition(TRANSITION_DURATION_MILLIS);
+        }
 
         refreshUiWithContentMode(newContentMode, false);
     }
+
     // Method to start welcome activity if needed:
     private boolean startWelcomeActivityIfNeeded() {
         // Check if welcome activity has already been displayed:
@@ -906,7 +905,7 @@ public class MainActivity extends AppCompatActivity {
      * If disabled, will apply gray tint.
      *
      * @param imageView to apply the color tint.
-     * @param enabled to indicate if the UI should be enabled or disabled.
+     * @param enabled   to indicate if the UI should be enabled or disabled.
      */
     private final void setTint(ImageView imageView, boolean enabled) {
         int color = ContextCompat.getColor(MainActivity.this, R.color.dtsGray8);
@@ -924,7 +923,7 @@ public class MainActivity extends AppCompatActivity {
      * If disabled, will apply gray tint.
      *
      * @param textView to apply the color tint.
-     * @param enabled to indicate if the UI should be enabled or disabled.
+     * @param enabled  to indicate if the UI should be enabled or disabled.
      */
     private final void setTint(TextView textView, boolean enabled) {
         int color;
@@ -941,14 +940,15 @@ public class MainActivity extends AppCompatActivity {
      * Convenient function to set background of layout to indicate the UI is enabled or disabled.
      * If enabled, will apply white border.
      * If disabled, will apply gray border.
-     * @param view to apply the background.
+     *
+     * @param view    to apply the background.
      * @param enabled to indicate if the UI should be enabled or disabled.
      */
-    private void setLayoutBackground(View view, boolean enabled){
+    private void setLayoutBackground(View view, boolean enabled) {
         int border;
-        if(enabled){
+        if (enabled) {
             border = R.drawable.dts_bg_fill33black_borderwhite;
-        }else{
+        } else {
             border = R.drawable.dts_bg_fill33black_bordergray8;
         }
 
@@ -981,12 +981,12 @@ public class MainActivity extends AppCompatActivity {
                     boolean enabled = intent.getBooleanExtra(DtsIntents.EXTRA_DTS_STATE, false);
                     Log.d(TAG, "Received EXTRA_DTS_STATE: " + enabled);
                     if (enabled) {
-                        if(FeatureManager.hasDts()){
+                        if (FeatureManager.hasDts()) {
                             // enable dts switch
                             refreshUiWithDtsAudioProcessingEnabled(true);
                         }
                     } else {
-                        if(FeatureManager.hasDts()){
+                        if (FeatureManager.hasDts()) {
                             // disable dts switch
                             refreshUiWithDtsAudioProcessingEnabled(false);
                         }
@@ -998,22 +998,23 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Function to set the content mode for headphones and internal speaker
+     *
      * @param newContentMode content mode to be set
      */
-    private void setContentMode(final ContentMode newContentMode){
+    private void setContentMode(final ContentMode newContentMode) {
 
         if (getActiveAudioRoute() == AudioRoute.UNKNOWN || !mDtsAudioProcessingEnabled) {
             Log.e(TAG, "setContentMode() does not support UNKNOWN audio route. Aborting");
             return;
         }
-        DtsManager.getInstance().setContentMode(this,newContentMode,new OnCompleteCallback() {
+        DtsManager.getInstance().setContentMode(this, newContentMode, new OnCompleteCallback() {
             @Override
             public void onComplete(DtsResult dtsResult) {
                 if (!dtsResult.isResultOk()) {
                     Log.e(TAG, "Selecting content mode returned error: " + dtsResult.getResultCode() + " | " + dtsResult.getResultMessage());
                     return;
                 }
-                Log.d(TAG, "New content mode "+newContentMode.getName()+" successfully selected: " );
+                Log.d(TAG, "New content mode " + newContentMode.getName() + " successfully selected: ");
                 refreshAudioLevelSettings();
             }
         });
@@ -1027,20 +1028,20 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void resetContentMode(final ContentMode newContentMode){
+    private void resetContentMode(final ContentMode newContentMode) {
 
         if (getActiveAudioRoute() == AudioRoute.UNKNOWN || !mDtsAudioProcessingEnabled) {
             Log.e(TAG, "resetContentMode() does not support UNKNOWN audio route. Aborting");
             return;
         }
-        DtsManager.getInstance().setContentMode(this,newContentMode,new OnCompleteCallback() {
+        DtsManager.getInstance().setContentMode(this, newContentMode, new OnCompleteCallback() {
             @Override
             public void onComplete(DtsResult dtsResult) {
                 if (!dtsResult.isResultOk()) {
                     Log.e(TAG, "Selecting content mode returned error: " + dtsResult.getResultCode() + " | " + dtsResult.getResultMessage());
                     return;
                 }
-                Log.d(TAG, "resetContentMode "+newContentMode.getName()+" successfully selected: " );
+                Log.d(TAG, "resetContentMode " + newContentMode.getName() + " successfully selected: ");
                 enableBassBoost(false, newContentMode);
                 enableDialogEnhancement(false, newContentMode);
 
@@ -1054,11 +1055,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Function to get the content mode for headphones and internal speaker
+     *
      * @return newContentMode content mode to be set
      */
-    private void refreshContentMode(){
+    private void refreshContentMode() {
 
-        if (getActiveAudioRoute() == AudioRoute.UNKNOWN ) {
+        if (getActiveAudioRoute() == AudioRoute.UNKNOWN) {
             Log.e(TAG, "refreshContentMode() does not support UNKNOWN audio route. Aborting");
             return;
         }
@@ -1071,15 +1073,14 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 ContentMode contentMode = (ContentMode) dtsResult.getData();
-                if(contentMode != null) {
+                if (contentMode != null) {
                     mCurrentContentMode = contentMode;
                     Log.v(TAG, "currentContentMode(" + mCurrentContentMode.getType() + ")");
                     refreshUiWithContentMode(mCurrentContentMode.getType(), true);
                     refreshAudioLevelSettings();
-                }
-                else {
+                } else {
                     // If content mode is null, then set default content mode
-                    for (ContentMode cm: mContentModeList) {
+                    for (ContentMode cm : mContentModeList) {
                         // Check if only one content mode is available then set it as default
                         if (mContentModeList.size() == 1) {
                             setContentMode(cm);
@@ -1088,11 +1089,11 @@ public class MainActivity extends AppCompatActivity {
                             Log.v(TAG, "defaultContentMode(" + mCurrentContentMode.getType() + ")");
                             refreshAudioLevelSettings();
                             break;
-                        }else if (mContentModeList.size() > 1){ // If more than one content modes are available then then set the default content mode
-                                                                // priority in order Attached2, Attached3, Attached4 as default
+                        } else if (mContentModeList.size() > 1) { // If more than one content modes are available then then set the default content mode
+                            // priority in order Attached2, Attached3, Attached4 as default
 
                             ContentModeType defaultType = null;
-                            switch (cm.getType()){
+                            switch (cm.getType()) {
                                 case ATTACHED_2: // Music
                                     defaultType = ContentModeType.ATTACHED_2;
                                     break;
@@ -1119,11 +1120,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Function to get all the content modes for headphones and internal speaker
+     *
      * @return List<ContentMode> content mode to be set
      */
-    private void getAllContentModes(){
+    private void getAllContentModes() {
 
-        DtsManager.getInstance().getAllContentModes(this,new QueryCallback<ContentMode>() {
+        DtsManager.getInstance().getAllContentModes(this, new QueryCallback<ContentMode>() {
             @Override
             public void onQueryComplete(DtsResult dtsResult, List<ContentMode> list) {
                 if (!dtsResult.isResultOk()) {
@@ -1161,6 +1163,7 @@ public class MainActivity extends AppCompatActivity {
         public DtsInitializeTask(Context context) {
             mContext = context;
         }
+
         @Override
         protected DtsResult doInBackground(Object... params) {
 
@@ -1213,7 +1216,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void enableBassBoost(boolean enable, ContentMode contentMode) {
         if (!FeatureManager.hasBassBoost()) {
-            Log.w(TAG,"Bass Boost feature is disabled");
+            Log.w(TAG, "Bass Boost feature is disabled");
             return;
         }
 
@@ -1239,7 +1242,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void enableTrebleBoost(boolean enable) {
         if (!FeatureManager.hasTrebleBoost()) {
-            Log.w(TAG,"Treble Boost feature is disabled");
+            Log.w(TAG, "Treble Boost feature is disabled");
             return;
         }
 
@@ -1263,7 +1266,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void enableDialogEnhancement(boolean enable, ContentMode contentMode) {
         if (!FeatureManager.hasDialogEnhancement()) {
-            Log.w(TAG,"Dialog Enhancement feature is disabled");
+            Log.w(TAG, "Dialog Enhancement feature is disabled");
             return;
         }
 
@@ -1279,7 +1282,7 @@ public class MainActivity extends AppCompatActivity {
         setLayoutBackground(mRlMainVocalBoost, enable);
     }
 
-    private void refreshAudioLevelSettings(){
+    private void refreshAudioLevelSettings() {
 
         // Refresh bass boost ui
         boolean bassEnabled = getBassBoostEnabled();
@@ -1318,7 +1321,7 @@ public class MainActivity extends AppCompatActivity {
             mLlMainStereoSound.setClickable(false);
             mLlMainStereoSound.setVisibility(View.GONE);
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mLlMainGraphicEq.getLayoutParams();
-            layoutParams.setMargins(0,0,0,0);
+            layoutParams.setMargins(0, 0, 0, 0);
             return StereoPreference.UNKNOWN;
         }
 
@@ -1326,7 +1329,7 @@ public class MainActivity extends AppCompatActivity {
         DtsResult<StereoPreference> resultStereoMode = DtsManager.getInstance().getStereoPreference(mActiveRoute, mCurrentContentMode);
         if (!resultStereoMode.isResultOk()) {
             // getStereoMode() call returned error
-            Log.e(TAG, "getStereoMode() call returned error - "+resultStereoMode.getResultMessage());
+            Log.e(TAG, "getStereoMode() call returned error - " + resultStereoMode.getResultMessage());
             return StereoPreference.UNKNOWN;
         }
         return resultStereoMode.getData();
@@ -1342,17 +1345,17 @@ public class MainActivity extends AppCompatActivity {
             case WIDE:
                 mTxtMainStereoSoundSub.setText(getText(R.string.preference_wide_title));
                 mImgMainStereoSound.setImageResource(R.drawable.dts_stereo_pref_wide);
-                mImgMainStereoSound.setPadding(5,5,5,5);
+                mImgMainStereoSound.setPadding(5, 5, 5, 5);
                 break;
             case FRONT:
                 mTxtMainStereoSoundSub.setText(getText(R.string.preference_infront_title));
                 mImgMainStereoSound.setImageResource(R.drawable.dts_stereo_pref_infront);
-                mImgMainStereoSound.setPadding(0,15,0,0);
+                mImgMainStereoSound.setPadding(0, 15, 0, 0);
                 break;
             case TRADITIONAL:
                 mTxtMainStereoSoundSub.setText(getText(R.string.preference_traditional_title));
                 mImgMainStereoSound.setImageResource(R.drawable.dts_stereo_pref_traditional);
-                mImgMainStereoSound.setPadding(0,0,0,0);
+                mImgMainStereoSound.setPadding(0, 0, 0, 0);
                 break;
             case UNKNOWN:
                 mTxtMainStereoSoundSub.setText(getText(R.string.preference_unknown_title));
@@ -1415,7 +1418,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int compare(ContentMode cm1, ContentMode cm2) {
-            return Integer.valueOf(cm1.getType().ordinal()).compareTo(Integer.valueOf(cm2.getType().ordinal())) ;
+            return Integer.valueOf(cm1.getType().ordinal()).compareTo(Integer.valueOf(cm2.getType().ordinal()));
         }
     }
 }

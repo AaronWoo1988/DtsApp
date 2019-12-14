@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.dts.dtsaudioprocessing.activities.MainActivity"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_main_top_level"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dts_bg_music">
+    tools:context="com.dts.dtsaudioprocessing.activities.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_main"
+
+    <FrameLayout
+        android:id="@+id/fl_image_with_tb"
         android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:minHeight="86dp"
-        android:fitsSystemWindows="true"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:layout_height="wrap_content">
+
+        <!-- Image showing -->
 
         <RelativeLayout
-            android:id="@+id/rl_main_dts_audio_processing_enabled"
-            android:layout_width="36dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left"
-            android:clickable="true">
+            android:id="@+id/rl_image_show"
+            android:layout_width="match_parent"
+            android:layout_height="800px"
 
-            <ImageView
-                android:id="@+id/img_main_dts_audio_processing_power"
-                android:contentDescription="@null"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/dts_ic_power" />
+            android:background="@drawable/dts_bg_music">
+
 
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="101dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/about_activity_name"
-            android:src="@drawable/dts_logo" />
-    </android.support.v7.widget.Toolbar>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_main"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:elevation="4dp"
+            android:fitsSystemWindows="true"
+            android:minHeight="86dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <RelativeLayout
+                android:id="@+id/rl_main_dts_audio_processing_enabled"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/img_main_dts_audio_processing_power"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_ic_power" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="101dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/about_activity_name"
+                android:src="@drawable/dts_logo" />
+        </android.support.v7.widget.Toolbar>
+
+    </FrameLayout>
 
     <!-- Power On -->
 
@@ -51,127 +70,235 @@
         android:id="@+id/rl_main_with_power_on"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_below="@+id/tb_main"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:layout_below="@+id/fl_image_with_tb"
+        android:background="@color/white"
+        android:gravity="center_horizontal">
 
+        <!-- 模式 -->
+        <TextView
+            android:id="@+id/tv_mode_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="20dp"
+            android:text="模式"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+
+        <!-- 模式选项 -->
         <LinearLayout
             android:id="@+id/ll_main_sound_modes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/rl_main_audio_settings"
+            android:layout_below="@id/tv_mode_title"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="2dp"
             android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_main_auto_mode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="onContentModeRelativeLayoutClicked">
+
+                <ImageView
+                    android:id="@+id/img_main_auto_mode"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
+
+                <TextView
+                    android:id="@+id/txt_main_auto_mode"
+                    style="@style/dts_font_medfnt_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/auto"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_main_music_mode"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="onContentModeRelativeLayoutClicked">
 
                 <ImageView
                     android:id="@+id/img_main_music_mode"
-                    android:contentDescription="@null"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="4dp"
-                    android:src="@drawable/dts_ic_mode_music" />
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
 
                 <TextView
                     android:id="@+id/txt_main_music_mode"
-                    android:text="@string/music"
                     style="@style/dts_font_medfnt_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/img_main_music_mode"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center" />
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/music"
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_main_movies_mode"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:orientation="vertical"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:onClick="onContentModeRelativeLayoutClicked">
+                android:onClick="onContentModeRelativeLayoutClicked"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/img_main_movies_mode"
-                    android:contentDescription="@null"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="4dp"
-                    android:src="@drawable/dts_ic_mode_movies" />
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
 
                 <TextView
                     android:id="@+id/txt_main_movies_mode"
-                    android:text="@string/movies"
                     style="@style/dts_font_medfnt_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/img_main_movies_mode"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center" />
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/movies"
+                    android:textColor="@color/black" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_main_games_mode"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_marginStart="2dp"
-                android:orientation="vertical"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:onClick="onContentModeRelativeLayoutClicked">
+                android:onClick="onContentModeRelativeLayoutClicked"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/img_main_games_mode"
-                    android:contentDescription="@null"
                     android:layout_width="85dp"
                     android:layout_height="85dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="4dp"
-                    android:src="@drawable/dts_ic_mode_games" />
+                    android:layout_marginBottom="15dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/dts_circle" />
 
                 <TextView
                     android:id="@+id/txt_main_games_mode"
-                    android:text="@string/games"
                     style="@style/dts_font_medfnt_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/img_main_games_mode"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center" />
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/games"
+                    android:textColor="@color/black" />
             </RelativeLayout>
         </LinearLayout>
+
+        <!-- 音效 -->
+        <RelativeLayout
+            android:id="@+id/rl_effect"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/ll_main_sound_modes"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tv_effect_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="根据场景智能切换音效"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/arrow" />
+
+        </RelativeLayout>
+
+
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rl_effect"
+            android:background="@color/black"
+
+            />
+
+        <RelativeLayout
+            android:id="@+id/rl_eq"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/view_divider"
+            android:layout_marginTop="10dp"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="均衡器"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <Switch
+                android:id="@+id/switch_eq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+
         <LinearLayout
             android:id="@+id/rl_main_audio_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/ll_main_advanced_audio"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:baselineAligned="false"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <RelativeLayout
                 android:id="@+id/rl_main_bass_boost"
@@ -276,22 +403,23 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
             android:baselineAligned="false"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/ll_main_stereo_sound"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:background="@drawable/dts_bg_fill33black_borderwhite"
-                android:padding="9dp"
-                android:onClick="onAudioSettingsClicked">
+                android:clickable="true"
+                android:onClick="onAudioSettingsClicked"
+                android:padding="9dp">
 
                 <ImageView
                     android:id="@+id/img_main_stereo_sound"
@@ -300,7 +428,7 @@
                     android:layout_gravity="center_vertical"
                     android:contentDescription="@null"
                     android:src="@drawable/dts_stereo_pref_wide"
-                    android:tint="@color/dtsOrangeAlt2"/>
+                    android:tint="@color/dtsOrangeAlt2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -316,8 +444,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/img_main_bass_boost"
-                        android:textColor="@color/dtsWhite"
-                        android:text="@string/preference_title" />
+                        android:text="@string/preference_title"
+                        android:textColor="@color/dtsWhite" />
 
                     <TextView
                         android:id="@+id/txt_main_stereo_sound_sub"
@@ -327,7 +455,7 @@
                         android:layout_below="@+id/img_main_bass_boost"
                         android:layout_marginTop="2dp"
                         android:text="@string/preference_wide_title"
-                        android:textColor="@color/dtsOrangeAlt2"/>
+                        android:textColor="@color/dtsOrangeAlt2" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -338,10 +466,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:clickable="true"
                 android:background="@drawable/dts_bg_fill33black_borderwhite"
-                android:padding="8dp"
-                android:onClick="onAudioSettingsClicked">
+                android:clickable="true"
+                android:onClick="onAudioSettingsClicked"
+                android:padding="8dp">
 
                 <ImageView
                     android:id="@+id/img_main_graphic_eq"
@@ -366,7 +494,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/img_main_bass_boost"
                         android:text="@string/graphic_equalizer_title"
-                        android:textColor="@color/dtsWhite"/>
+                        android:textColor="@color/dtsWhite" />
 
                     <TextView
                         android:id="@+id/txt_main_graphic_eq_sub"
@@ -380,6 +508,7 @@
             </LinearLayout>
         </LinearLayout>
 
+
     </RelativeLayout>
 
     <!-- Power Off -->
@@ -389,38 +518,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/dtsCCBlack"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <RelativeLayout
         android:id="@+id/rl_main_with_power_off"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/img_main_dts_arrow"
-            android:contentDescription="@null"
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="23dp"
+            android:contentDescription="@null"
             android:src="@drawable/dts_arrow"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/txt_main_suggest_dts_audio_processing"
-            android:text="@string/dts_audio_processing_off_message"
-            android:textColor="@color/dtsWhite"
             style="@style/dts_font_medfnt_large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img_main_dts_arrow"
-            android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
-            android:visibility="visible"/>
+            android:layout_marginEnd="20dp"
+            android:text="@string/dts_audio_processing_off_message"
+            android:textColor="@color/dtsWhite"
+            android:visibility="visible" />
     </RelativeLayout>
-  </RelativeLayout>
+</RelativeLayout>
